@@ -1,7 +1,7 @@
 ---
 
 - name: "4.2.1.1 | PATCH | Ensure rsyslog installed"
-  package:
+  dnf:
       name: rsyslog
       state: present
   when:

@@ -1,7 +1,7 @@
 ---
 
 - name: "3.4.2.1 | PATCH | Ensure nftables is installed"
-  package:
+  dnf:
       name: nftables
       state: present
   when:
@@ -27,7 +27,7 @@
             - rhel9cis_nftables_firewalld_state == "masked"
 
       - name: "3.4.2.2 | PATCH | Ensure firewalld is either not installed or masked with nftables | pkg removed"
-        package:
+        dnf:
             name: firewalld
             state: absent
         when:
@@ -55,7 +55,7 @@
             - ip6tables
 
       - name: "3.4.2.3 | PATCH | Ensure iptables-services not installed with nftables | Remove IPTables"
-        package:
+        dnf:
             name: iptables-service
             state: absent
   when:

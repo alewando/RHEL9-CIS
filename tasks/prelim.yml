@@ -83,7 +83,7 @@
       - level1-workstation
 
 - name: "PRELIM | Section 4.1 | Configure System Accounting (auditd)"
-  package:
+  dnf:
       name: audit
       state: present
   become: true
@@ -109,7 +109,7 @@
       - always
 
 - name: "PRELIM | Section 5.1 | Configure cron"
-  package:
+  dnf:
       name: cronie
       state: present
   become: true
@@ -123,7 +123,7 @@
       - cron
 
 - name: "PRELIM | Install authconfig"
-  package:
+  dnf:
       name: authconfig
       state: present
   become: true

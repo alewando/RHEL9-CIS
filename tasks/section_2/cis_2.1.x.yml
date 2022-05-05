@@ -1,7 +1,7 @@
 ---
 
 - name: "2.1.1 | PATCH | Ensure time synchronization is in use"
-  package:
+  dnf:
       name: chrony
       state: present
   when:

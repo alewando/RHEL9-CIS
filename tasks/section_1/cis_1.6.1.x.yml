@@ -1,7 +1,7 @@
 ---
 
 - name: "1.6.1.1 | PATCH | Ensure SELinux is installed"
-  package:
+  dnf:
       name: libselinux
       state: present
   when:
@@ -91,7 +91,7 @@
       - rule_1.6.1.5
 
 - name: "1.6.1.6 | PATCH | Ensure SETroubleshoot is not installed"
-  package:
+  dnf:
       name: setroubleshoot
       state: absent
   when:
@@ -105,7 +105,7 @@
       - rule_1.6.1.6
 
 - name: "1.6.1.7 | PATCH | Ensure the MCS Translation Service (mcstrans) is not installed"
-  package:
+  dnf:
       name: mcstrans
       state: absent
   when:

@@ -583,6 +583,9 @@ rhel9cis_pam_password:
 
 rhel9cis_pam_faillock:
     remember: 5
+    attempts: 5
+    fail_for_root: false
+    unlock_time: 900
 
 # UID settings for interactive users
 # These are discovered via logins.def if set true
