@@ -48,7 +48,7 @@
 - name: "5.3.4 | PATCH | Ensure users must provide password for escalation"
   replace:
       path: "{{ item }}"
-      regexp: '^([^#|{% if system_is_ec2 %}ec2-user{% endif %}].*)NOPASSWD(.*)'
+      regexp: '^([^#|{% if system_is_ec2 %}ec2-user|ssm-user{% endif %}].*)NOPASSWD(.*)'
       replace: '\1PASSWD\2'
       validate: '/usr/sbin/visudo -cf %s'
   with_items:

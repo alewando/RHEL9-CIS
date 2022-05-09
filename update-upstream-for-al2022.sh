@@ -15,18 +15,18 @@ EOF
 fi 
 
  # Change all `dnf:` tasks to `dnf:`
- #  - Not sure why, but ansible detects the package manager on AL2022 to be `yum` and not `dnf`
+#  - Ansible detects the package manager on AL2022 to be `yum` and not `dnf`
+#    - See https://github.com/ansible/ansible/pull/77050
+#    - This is fixed in Ansible 6 (ansible-core 2.13) but it is not available yet
  #  - This causes the `package` module to fail because it defers to the `yum` module and fails, since that requires `python2` which isn't present
+# TODO: Remove this once ansible 6 is released (expected 2022-06-21)
 echo "Change package tasks to explicit dnf tasks"
 find . -iname '*.yml'| xargs sed -i 's/package:/dnf:/g'
 
-# Update the OS family/version check
-# tasks/main.yml, "Check OS version and family"
-# assert:
-#     that: ansible_distribution == 'Amazon' and ansible_os_family == 'RedHat' and ansible_distribution_major_version is version_compare('2022', '==')
-if grep -q "Rocky" tasks/main.yml; then
-  echo "Updating OS family/version check"
-  sed -i "s/that: (ansible_distribution != 'CentOS' and ansible_os_family == 'RedHat'.*/that: ansible_distribution == 'Amazon' and ansible_os_family == 'RedHat' and ansible_distribution_major_version is version_compare('2022', '==')/" tasks/main.yml
+# Include 'ssm-user' in list of users that can sudo without password
+if grep -q "ec-user" tasks/section_5/cis_5.3.x.yml; then
+  echo "Adding ssm-user as sudoer without password"
+  sed -i 's/ec2-user/ec2-user|ssm-user/g' tasks/section_5/cis_5.3.x.yml
 fi
 
 # Update package names
