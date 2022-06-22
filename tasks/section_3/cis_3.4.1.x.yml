@@ -1,7 +1,7 @@
 ---
 
 - name: "3.4.1.1 | PATCH | Ensure firewalld is installed"
-  dnf:
+  package:
       name:
           - firewalld
           - iptables
@@ -28,7 +28,7 @@
         when: item in ansible_facts.packages
 
       - name: "3.4.1.2 | PATCH | Ensure iptables-services not installed with firewalld | remove iptables-services pkg "
-        dnf:
+        package:
             name: iptables-services
             state: absent
         when:
@@ -54,7 +54,7 @@
             - rhel9cis_firewalld_nftables_state == "masked"
 
       - name: "3.4.1.3 | PATCH | Ensure nftables either not installed or masked with firewalld | pkg removed"
-        dnf:
+        package:
             name: nftables
             state: absent
         when:

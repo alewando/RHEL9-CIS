@@ -1,7 +1,7 @@
 ---
 
 - name: "2.2.1 | PATCH | Ensure xinetd is not installed"
-  dnf:
+  package:
       name: xinetd
       state: absent
   when:
@@ -16,7 +16,7 @@
       - rule_2.2.1
 
 - name: "2.2.2 | PATCH | Ensure xorg-x11-server-common is not installed"
-  dnf:
+  package:
       name: xorg-x11-server-common
       state: absent
   when:
@@ -30,7 +30,7 @@
       - rule_2.2.2
 
 - name: "2.2.3 | PATCH | Ensure Avahi Server is not installed"
-  dnf:
+  package:
       name:
           - avahi-autoipd
           - avahi
@@ -48,7 +48,7 @@
       - rule_2.2.3
 
 - name: "2.2.4 | PATCH | Ensure CUPS is not installed"
-  dnf:
+  package:
       name: cups
       state: absent
   when:
@@ -63,7 +63,7 @@
       - rule_2.2.3
 
 - name: "2.2.5 | PATCH | Ensure DHCP Server is not installed"
-  dnf:
+  package:
       name: dhcp-server
       state: absent
   when:
@@ -79,7 +79,7 @@
       - rule_2.2.5
 
 - name: "2.2.6 | PATCH | Ensure DNS Server is not installed"
-  dnf:
+  package:
       name: bind
       state: absent
   when:
@@ -95,7 +95,7 @@
       - rule_2.2.6
 
 - name: "2.2.7 | PATCH | Ensure FTP Server is not installed"
-  dnf:
+  package:
       name: ftp
       state: absent
   when:
@@ -111,7 +111,7 @@
       - rule_2.2.7
 
 - name: "2.2.8 | PATCH | Ensure VSFTP Server is not installed"
-  dnf:
+  package:
       name: vsftpd
       state: absent
   when:
@@ -127,7 +127,7 @@
       - rule_2.2.8
 
 - name: "2.2.9 | PACH | Ensure TFTP Server is not installed"
-  dnf:
+  package:
       name: tftp-server
       state: absent
   when:
@@ -145,7 +145,7 @@
 - name: "2.2.10 | PATCH | Ensure a web server is not installed"
   block:
       - name: "2.2.10 | PATCH | Ensure a web server is not installed | Remove httpd server"
-        dnf:
+        package:
             name: httpd
             state: absent
         when:
@@ -153,7 +153,7 @@
             - "'httpd' in ansible_facts.packages"
 
       - name: "2.2.10 | PATCH | Ensure a web server is not installed | Remove nginx server"
-        dnf:
+        package:
             name: nginx
             state: absent
         when:
@@ -174,7 +174,7 @@
 - name: "2.2.11 | PATCH | Ensure IMAP and POP3 server is not installed"
   block:
       - name: "2.2.11 | PATCH | Ensure IMAP and POP3 server is not installed"
-        dnf:
+        package:
             name:
                 - dovecot
             state: absent
@@ -183,7 +183,7 @@
             - "'dovecot' in ansible_facts.packages"
 
       - name: "2.2.11 | PATCH | Ensure IMAP and POP3 server is not installed"
-        dnf:
+        package:
             name:
                 - cyrus-imapd
             state: absent
@@ -204,7 +204,7 @@
       - rule_2.2.11
 
 - name: "2.2.12 | PATCH | Ensure Samba is not enabled"
-  dnf:
+  package:
       name: samba
       state: absent
   when:
@@ -220,7 +220,7 @@
       - rule_2.2.12
 
 - name: "2.2.13 | PATCH | Ensure HTTP Proxy Server is not installed"
-  dnf:
+  package:
       name: squid
       state: absent
   when:
@@ -236,7 +236,7 @@
       - rule_2.2.13
 
 - name: "2.2.14 | PATCH | Ensure net-snmp is not installed"
-  dnf:
+  package:
       name: net-snmp
       state: absent
   when:
@@ -252,7 +252,7 @@
       - rule_2.2.14
 
 - name: "2.2.15 | PATCH | Ensure NIS Server is not installed"
-  dnf:
+  package:
       name: ypserv
       state: absent
   when:
@@ -268,7 +268,7 @@
       - rule_2.2.17
 
 - name: "2.2.16 | PATCH | Ensure telnet-server is not installed"
-  dnf:
+  package:
       name: telnet-server
       state: absent
   when:
@@ -306,7 +306,7 @@
 - name: "2.2.18 | PATCH | Ensure nfs-utils is not installed or the nfs-server service is masked"
   block:
       - name: "2.2.18 | PATCH | Ensure nfs-utils is not installed or the nfs-server service is masked | remove package"
-        dnf:
+        package:
             name: nfs-utils
             state: absent
         when:
@@ -338,7 +338,7 @@
 - name: "2.2.19 | PATCH | Ensure rpcbind is not installed or the rpcbind services are masked"
   block:
       - name: "2.2.19 | PATCH | Ensure rpcbind is not installed or the rpcbind services are masked | remove package"
-        dnf:
+        package:
             name: rpcbind
             state: absent
         when:
@@ -369,7 +369,7 @@
 - name: "2.2.20 | PATCH | Ensure rsync service is not enabled "
   block:
       - name: "2.2.20 | PATCH | Ensure rsync service is not enabled | remove package"
-        dnf:
+        package:
             name: rsync
             state: absent
         when:

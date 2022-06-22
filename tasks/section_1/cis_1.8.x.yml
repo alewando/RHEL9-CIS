@@ -1,7 +1,7 @@
 ---
 
 - name: "1.8.1 | PATCH | Ensure GNOME Display Manager is removed"
-  dnf:
+  package:
       name: gdm
       state: absent
   when:
