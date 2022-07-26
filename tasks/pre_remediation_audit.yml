@@ -13,11 +13,11 @@
       state: directory
       mode: '0755'
 
-  - name: Pre Audit | retrieve audit content files from git
-    git:
-        repo: "{{ audit_file_git }}"
-        dest: "{{ audit_conf_dir }}"
-        version: "{{ audit_git_version }}"
+- name: Pre Audit | retrieve audit content files from git
+  git:
+      repo: "{{ audit_file_git }}"
+      dest: "{{ audit_conf_dir }}"
+      version: "{{ audit_git_version }}"
   when:
   - audit_content == 'git'
 
